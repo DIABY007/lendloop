@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useMutation } from "convex/react";
 import { api } from "@convex/_generated/api";
 import {
@@ -80,9 +81,17 @@ export function AddToolDialog({ open, onOpenChange }: AddToolDialogProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md bg-card border-border">
         <DialogHeader>
-          <DialogTitle className="text-lg font-bold text-foreground flex items-center gap-2">
-            <PlusCircle className="size-5 text-primary" />
-            List Equipment to Lend
+          <DialogTitle className="text-lg font-bold text-foreground flex items-center gap-2.5">
+            <div className="flex size-7 items-center justify-center rounded-lg bg-primary/10 border border-primary/25 p-1 shrink-0">
+              <Image
+                src="/Logo.png"
+                alt="LendLoop logo"
+                width={20}
+                height={20}
+                className="size-5 object-contain"
+              />
+            </div>
+            <span>List Equipment to Lend</span>
           </DialogTitle>
           <DialogDescription className="text-xs text-muted-foreground">
             Share your tools with verified neighbors. You will have full authority to approve or decline every borrow request.

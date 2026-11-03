@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
 import { useMutation, useQuery, useConvexAuth } from "convex/react";
 import { api } from "@convex/_generated/api";
@@ -185,8 +186,14 @@ export default function DashboardPage() {
       <div className="flex min-h-screen flex-col bg-background">
         <Navbar />
         <div className="mx-auto max-w-md px-4 py-20 text-center space-y-4">
-          <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-primary/10 border border-primary/20 text-primary">
-            <Package className="size-6" />
+          <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-card border border-primary/30 p-2 shadow-sm">
+            <Image
+              src="/Logo.png"
+              alt="LendLoop logo"
+              width={48}
+              height={48}
+              className="size-10 object-contain"
+            />
           </div>
           <h2 className="text-xl font-bold text-foreground">Sign In Required</h2>
           <p className="text-xs text-muted-foreground">
@@ -211,20 +218,32 @@ export default function DashboardPage() {
       <main className="flex-1 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 w-full">
         {/* Top Header Banner */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/70 pb-6 mb-8">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                Neighborhood Tool Board
-              </h1>
-              {currentUser?.role === "admin" && (
-                <Badge className="bg-primary/20 border-primary/40 text-primary font-mono text-xs">
-                  Admin Mode
-                </Badge>
-              )}
+          <div className="flex items-start gap-3">
+            <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 border border-primary/30 p-1.5 shrink-0 mt-0.5">
+              <Image
+                src="/Logo.png"
+                alt="LendLoop logo"
+                width={36}
+                height={36}
+                className="size-8 object-contain"
+                priority
+              />
             </div>
-            <p className="text-xs sm:text-sm text-muted-foreground">
-              Welcome back, <strong className="text-foreground">{user?.firstName || "Neighbor"}</strong>. Manage your equipment and borrow requests below.
-            </p>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                  Neighborhood Tool Board
+                </h1>
+                {currentUser?.role === "admin" && (
+                  <Badge className="bg-primary/20 border-primary/40 text-primary font-mono text-xs">
+                    Admin Mode
+                  </Badge>
+                )}
+              </div>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                Welcome back, <strong className="text-foreground">{user?.firstName || "Neighbor"}</strong>. Manage your equipment and borrow requests below.
+              </p>
+            </div>
           </div>
 
           <Button

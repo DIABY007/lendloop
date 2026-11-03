@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useQuery } from "convex/react";
 import { api } from "@convex/_generated/api";
 import { Navbar } from "@/components/navbar";
@@ -12,7 +13,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { CATEGORIES, ToolCategory } from "@/lib/constants";
 import {
-  Wrench,
   ShieldCheck,
   Zap,
   ArrowRight,
@@ -46,6 +46,20 @@ export default function HomePage() {
 
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
             <div className="mx-auto max-w-3xl text-center">
+              {/* Brand Emblem */}
+              <div className="flex justify-center mb-6">
+                <div className="relative flex size-20 sm:size-24 items-center justify-center rounded-2xl bg-card/80 border border-primary/30 p-3.5 shadow-xl shadow-primary/5 ring-1 ring-primary/20 backdrop-blur-sm transition-transform hover:scale-105 duration-300">
+                  <Image
+                    src="/Logo.png"
+                    alt="LendLoop Logo"
+                    width={96}
+                    height={96}
+                    className="size-full object-contain drop-shadow"
+                    priority
+                  />
+                </div>
+              </div>
+
               {/* Badge */}
               <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs font-mono font-medium text-primary mb-6">
                 <Sparkles className="size-3.5" />
@@ -147,7 +161,14 @@ export default function HomePage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
               <div>
                 <div className="flex items-center gap-2 font-mono text-xs text-primary font-semibold uppercase tracking-wider mb-1">
-                  <Wrench className="size-3.5" />
+                  <div className="relative size-4 shrink-0">
+                    <Image
+                      src="/Logo.png"
+                      alt="LendLoop logo"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                   <span>Equipment Registry</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
@@ -258,7 +279,14 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t border-border/70 bg-card/60 py-8 text-center text-xs text-muted-foreground">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 font-medium">
+          <div className="flex items-center gap-2.5 font-medium">
+            <Image
+              src="/Logo.png"
+              alt="LendLoop logo"
+              width={20}
+              height={20}
+              className="size-5 object-contain"
+            />
             <span className="font-bold text-foreground">LendLoop</span>
             <span>—</span>
             <span>Neighborhood Tool Lending & Automated Workflows</span>

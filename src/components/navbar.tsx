@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import { useQuery, useConvexAuth } from "convex/react";
 import { api } from "@convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Wrench, ShieldCheck, ArrowRight, LayoutDashboard, Compass } from "lucide-react";
+import { ShieldCheck, ArrowRight, LayoutDashboard, Compass } from "lucide-react";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -24,8 +25,15 @@ export function Navbar() {
             href="/"
             className="group flex items-center gap-2.5 font-semibold tracking-tight text-foreground transition-transform active:scale-[0.98]"
           >
-            <div className="flex size-9 items-center justify-center rounded-lg bg-primary/15 border border-primary/30 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-              <Wrench className="size-4.5 transition-transform group-hover:rotate-12 duration-200" />
+            <div className="relative flex size-9 items-center justify-center rounded-lg bg-primary/10 border border-primary/25 overflow-hidden transition-all group-hover:border-primary/50 group-hover:bg-primary/15">
+              <Image
+                src="/Logo.png"
+                alt="LendLoop logo"
+                width={36}
+                height={36}
+                className="size-7 object-contain transition-transform group-hover:scale-105 duration-200"
+                priority
+              />
             </div>
             <div className="flex flex-col">
               <span className="text-base font-bold tracking-tight text-foreground flex items-center gap-1.5">
