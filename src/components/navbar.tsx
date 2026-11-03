@@ -103,7 +103,7 @@ export function Navbar() {
               />
             </div>
           ) : (
-            <SignInButton mode="modal">
+            <SignInButton mode="modal" fallbackRedirectUrl="/dashboard">
               <Button
                 size="sm"
                 className="gap-1.5 bg-primary text-primary-foreground hover:bg-primary/90 font-medium text-xs px-3.5 shadow-sm active:scale-[0.98] transition-transform"

@@ -17,6 +17,7 @@ export default function SignInPage() {
           }
         >
           <SignIn
+            fallbackRedirectUrl="/dashboard"
             appearance={{
               elements: {
                 card: "bg-card border border-border shadow-xl rounded-xl",

@@ -17,6 +17,7 @@ export default function SignUpPage() {
           }
         >
           <SignUp
+            fallbackRedirectUrl="/dashboard"
             appearance={{
               elements: {
                 card: "bg-card border border-border shadow-xl rounded-xl",
