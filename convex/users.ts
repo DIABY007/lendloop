@@ -70,6 +70,35 @@ export const getCurrentUser = query({
 });
 
 /**
+ * Utility mutation to set a user's role (e.g. promote to admin for testing).
+ */
+export const setRole = mutation({
+  args: {
+    clerkId: v.optional(v.string()),
+    role: v.union(v.literal("user"), v.literal("admin")),
+  },
+  handler: async (ctx, args) => {
+    let target;
+    if (args.clerkId) {
+      target = await ctx.db
+        .query("users")
+        .withIndex("by_clerkId", (q) => q.eq("clerkId", args.clerkId!))
+        .first();
+    } else {
+      // Default to the first registered user (Owner / Compte A)
+      target = await ctx.db.query("users").first();
+    }
+
+    if (!target) {
+      throw new Error("User not found.");
+    }
+
+    await ctx.db.patch(target._id, { role: args.role });
+    return { success: true, userId: target._id, newRole: args.role, clerkId: target.clerkId };
+  },
+});
+
+/**
  * Admin: List all registered users.
  * Enforces requireAdmin server-side.
  */
