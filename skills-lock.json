@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "skills": {
+    "aceternity-ui": {
+      "source": "secondsky/claude-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/aceternity-ui/skills/aceternity-ui/SKILL.md",
+      "computedHash": "e92b2ec7cfd5d27ba88b0a42079aa8c7fddb506d1e0f65d7fa198756a7894a21"
+    },
+    "animate": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/animate/SKILL.md",
+      "computedHash": "f76ddd3d4446c3c56a143ea98650c370b3e8f88e6203d1e22082d2082bf1eed7"
+    },
+    "animate-expo": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/animate-expo/SKILL.md",
+      "computedHash": "5de09593d564091f9db60aabede7bed760251e118548272050a247c653c417d2"
+    },
+    "animation-performance": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/animation-performance/SKILL.md",
+      "computedHash": "333f6a387124d0eda927614671f8be3a00d1ddeb9f43cf8b7fa7032630414311"
+    },
+    "animation-vocabulary": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/animation-vocabulary/SKILL.md",
+      "computedHash": "0058036865ecbb864fd0c4132efcc62425355d6e99c7e6ef6a936742d62a5dea"
+    },
+    "apple-design": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/apple-design/SKILL.md",
+      "computedHash": "0190417d092a0df447b000154e39733ea6d97efad6d3bec8a6ce3845aeb88914"
+    },
+    "ask-sonner": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/ask-sonner/SKILL.md",
+      "computedHash": "8bd257b845985f4b35b603b510a126604176521094af79c4b7347ffeb8a8f7ab"
+    },
+    "break-ui": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/break-ui/SKILL.md",
+      "computedHash": "60ada67662925f4df5e3c6ff41cac3ab241b66f8898100a5ffcd7ba7196cb868"
+    },
+    "clerk-nextjs-patterns": {
+      "source": "clerk/skills",
+      "sourceType": "github",
+      "skillPath": "skills/clerk-nextjs-patterns/SKILL.md",
+      "computedHash": "dbd12076e3f36815bdb967312184723e78d829278dcf0df366a77cabde1f5fbf"
+    },
+    "convex": {
+      "source": "convex/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/convex/SKILL.md",
+      "computedHash": "d8d267be1af449b19eaf05a7b1716ed903e1bc4de2e67a911f67859f341c5337"
+    },
+    "convex-auth": {
+      "source": "convex/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/convex-auth/SKILL.md",
+      "computedHash": "e1b348dd4ac8fbac77a8017a97f34e674fb390e1fea4d6c084d84fb61dfe8176"
+    },
+    "convex-authz": {
+      "source": "convex/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/convex-authz/SKILL.md",
+      "computedHash": "b8f20fe9a70ccfb4d5ce464ad818fd8a66e3ec84695f22fb8def92b4af27d44b"
+    },
+    "convex-docs": {
+      "source": "convex/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/convex-docs/SKILL.md",
+      "computedHash": "dab00143b5782f5c6a83fe88f64740816ef6b374e1309d5197e36b7017459e04"
+    },
+    "emil-design-eng": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/emil-design-eng/SKILL.md",
+      "computedHash": "2483020b5bbaab030d6b3463bfba49c8d9c2cd8dea4d9fba836dbd471f1fb706"
+    },
+    "find-animation-opportunities": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/find-animation-opportunities/SKILL.md",
+      "computedHash": "465d087c41768e4f14ed640dd049036009f613feb55baaa5831b68b33178f9d2"
+    },
+    "improve-animations": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/improve-animations/SKILL.md",
+      "computedHash": "f6652a3bb94950baa33c684cc0966c838eb65cf22ebb5769a4f51ea205c254fe"
+    },
+    "mobile-native": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/mobile-native/SKILL.md",
+      "computedHash": "f221cea36642168df6d3d6d7f236237cbf1ae669138ff7df07775674223d49ad"
+    },
+    "n8n-credentials-and-security-official": {
+      "source": "n8n-io/skills",
+      "sourceType": "github",
+      "skillPath": "skills/n8n-credentials-and-security-official/SKILL.md",
+      "computedHash": "09264a6f423a73cdc2682596f694d9a78d19b9e6a318d3f9adcca791cad51577"
+    },
+    "n8n-error-handling-official": {
+      "source": "n8n-io/skills",
+      "sourceType": "github",
+      "skillPath": "skills/n8n-error-handling-official/SKILL.md",
+      "computedHash": "d0060f0f3cf3ffd4cb21dd372e70cc70cd86406bff54786178dfad830ae04908"
+    },
+    "n8n-workflow-lifecycle-official": {
+      "source": "n8n-io/skills",
+      "sourceType": "github",
+      "skillPath": "skills/n8n-workflow-lifecycle-official/SKILL.md",
+      "computedHash": "c70dceb57227955aa5eb189900f4e3327ad5c4036ee6580645ed4abe04de8e82"
+    },
+    "n8n-workflow-patterns": {
+      "source": "czlonkowski/n8n-skills",
+      "sourceType": "github",
+      "skillPath": "skills/n8n-workflow-patterns/SKILL.md",
+      "computedHash": "0048569dea2b9a6f5854094d3405266e5dca5f4fdc72c61677e5c2d3bc388c8b"
+    },
+    "nextjs-app-router-patterns": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "skillPath": "plugins/frontend-mobile-development/skills/nextjs-app-router-patterns/SKILL.md",
+      "computedHash": "b4fea42eecf1f803155ef7fa133d5286ee8f2dbba3e616954e9e43c6f0ffc144"
+    },
+    "pick-ui-library": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/pick-ui-library/SKILL.md",
+      "computedHash": "5d2a77bf0ecafbda85aa95fb49999b6d77945d9066ec83d970b62e5b388cd686"
+    },
+    "prototype": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/prototype/SKILL.md",
+      "computedHash": "77be567d8c946608fdd15e61b62ab383cdf289a194dce2479828b7eda860d3ba"
+    },
+    "remove-animations": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/remove-animations/SKILL.md",
+      "computedHash": "5d738305c722c25e054a9e3b67e68d4429617d9fbae4bc8861b73cc25c8ba84c"
+    },
+    "review-animations": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/review-animations/SKILL.md",
+      "computedHash": "b1aca2c16876b8f00e2a1eb161714e63ec41099269d5f95c2f307230749b9dcd"
+    },
+    "shadcn": {
+      "source": "shadcn-ui/ui",
+      "sourceType": "github",
+      "skillPath": "skills/shadcn/SKILL.md",
+      "computedHash": "b864a958765563321f485a96f4d59c0bb6539f4286ab6d8b8b66895b7ebd302d"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "computedHash": "3219a1944e404ffc14d1d9d6aef6dd2e3855b81387ee0a044ccbfe14d34c2357"
+    },
+    "write-swift": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/write-swift/SKILL.md",
+      "computedHash": "f20bb9cf51dbee1900b264820a12f1d3d378dc4d23ac758e7ba9e644c49a2459"
+    }
+  }
+}
