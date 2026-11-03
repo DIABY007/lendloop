@@ -32,11 +32,11 @@ export function Providers({ children }: { children: ReactNode }) {
       appearance={{
         variables: {
           colorBackground: "hsl(28, 7%, 11%)",
-          colorText: "hsl(35, 15%, 93%)",
+          colorForeground: "hsl(35, 15%, 93%)",
           colorPrimary: "hsl(34, 96%, 53%)",
-          colorInputBackground: "hsl(28, 5%, 15%)",
-          colorInputText: "hsl(35, 15%, 93%)",
-          colorTextSecondary: "hsl(28, 10%, 75%)",
+          colorInput: "hsl(28, 5%, 15%)",
+          colorInputForeground: "hsl(35, 15%, 93%)",
+          colorMutedForeground: "hsl(28, 10%, 75%)",
         },
       }}
     >

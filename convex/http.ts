@@ -6,6 +6,18 @@ import { Webhook } from "svix";
 const http = httpRouter();
 
 /**
+ * Constant-time string comparison to prevent timing side-channel attacks.
+ */
+function timingSafeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let mismatch = 0;
+  for (let i = 0; i < a.length; i++) {
+    mismatch |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return mismatch === 0;
+}
+
+/**
  * Computes an HMAC-SHA256 hex digest for signature comparison.
  */
 async function computeHmacSha256(secret: string, message: string): Promise<string> {
@@ -65,10 +77,10 @@ http.route({
 
     const bodyText = await request.text();
 
-    // Verify HMAC signature
+    // Verify HMAC signature using timing-safe comparison
     if (signature) {
       const expectedSignature = await computeHmacSha256(secret, bodyText);
-      if (signature !== expectedSignature) {
+      if (!timingSafeEqual(signature, expectedSignature)) {
         return new Response(JSON.stringify({ error: "Invalid HMAC signature" }), {
           status: 403,
           headers: { "Content-Type": "application/json" },

@@ -45,6 +45,7 @@ export const listAllTools = query({
     ),
   },
   handler: async (ctx, args) => {
+    await requireUser(ctx);
     const category = args.category;
     const tools = category
       ? await ctx.db

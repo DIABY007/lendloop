@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { internalMutation, query } from "./_generated/server";
+import { requireUser } from "./lib/auth";
 
 /**
  * Records an automation log entry (e.g. from an n8n webhook or reminder run).
@@ -52,6 +53,21 @@ export const getLogsForRequest = query({
     borrowRequestId: v.id("borrowRequests"),
   },
   handler: async (ctx, args) => {
+    const user = await requireUser(ctx);
+    const loan = await ctx.db.get(args.borrowRequestId);
+    if (!loan) {
+      return [];
+    }
+
+    // Only the borrower, the lender, or an administrator can view automation logs
+    if (
+      loan.borrowerId !== user._id &&
+      loan.lenderId !== user._id &&
+      user.role !== "admin"
+    ) {
+      throw new Error("Forbidden: You do not have permission to view these logs.");
+    }
+
     return await ctx.db
       .query("automationLogs")
       .withIndex("by_borrowRequestId", (q) => q.eq("borrowRequestId", args.borrowRequestId))
