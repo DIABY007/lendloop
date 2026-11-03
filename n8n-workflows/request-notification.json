@@ -1,0 +1,352 @@
+{
+  "name": "LendLoop — Request Notification",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lendloop-request",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "id": "10000000-0000-0000-0000-000000000001",
+      "name": "Convex Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "lendloop-request-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\n\n// Retrieve HMAC signature from header\nconst headers = $input.item.json.headers;\nconst signature = headers['x-convex-signature'] || headers['X-Convex-Signature'];\n\n// Get shared secret from environment variables\nconst secret = $env.N8N_WEBHOOK_SECRET || 'lendloop_shared_hmac_secret_key_2026';\n\nconst body = $input.item.json.body;\nconst rawBody = typeof body === 'string' ? body : JSON.stringify(body);\n\n// Calculate expected signature\nconst expectedSignature = crypto\n  .createHmac('sha256', secret)\n  .update(rawBody)\n  .digest('hex');\n\nconst isValid = signature && crypto.timingSafeEqual(\n  Buffer.from(signature),\n  Buffer.from(expectedSignature)\n);\n\nreturn [{\n  json: {\n    isValid: Boolean(isValid),\n    payload: typeof body === 'string' ? JSON.parse(body) : body\n  }\n}];"
+      },
+      "id": "10000000-0000-0000-0000-000000000002",
+      "name": "Verify HMAC Signature",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.isValid }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "10000000-0000-0000-0000-000000000003",
+      "name": "Is Signature Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"error\": \"forbidden\",\n  \"message\": \"Cryptographic HMAC signature verification failed\"\n}",
+        "options": {
+          "responseCode": 403
+        }
+      },
+      "id": "10000000-0000-0000-0000-000000000004",
+      "name": "Reject 403",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [900, 480]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.payload.event }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "request_created"
+            },
+            {
+              "value2": "request_approved"
+            },
+            {
+              "value2": "request_declined"
+            },
+            {
+              "value2": "loan_returned"
+            }
+          ]
+        }
+      },
+      "id": "10000000-0000-0000-0000-000000000005",
+      "name": "Route by Event",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [920, 240]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "notificationType",
+              "value": "BORROW_REQUEST_RECEIVED",
+              "type": "string"
+            },
+            {
+              "id": "2",
+              "name": "recipient",
+              "value": "={{ $json.payload.lenderEmail }}",
+              "type": "string"
+            },
+            {
+              "id": "3",
+              "name": "message",
+              "value": "=Neighbor {{ $json.payload.borrowerName }} requested to borrow your {{ $json.payload.toolName }} from {{ $json.payload.startDate }} to {{ $json.payload.endDate }}.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "10000000-0000-0000-0000-000000000006",
+      "name": "Format Owner Notification",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1160, 100]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "notificationType",
+              "value": "REQUEST_APPROVED",
+              "type": "string"
+            },
+            {
+              "id": "2",
+              "name": "recipient",
+              "value": "={{ $json.payload.borrowerEmail }}",
+              "type": "string"
+            },
+            {
+              "id": "3",
+              "name": "message",
+              "value": "=Good news! {{ $json.payload.lenderName }} approved your request for {{ $json.payload.toolName }}. Return date: {{ $json.payload.endDate }}.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "10000000-0000-0000-0000-000000000007",
+      "name": "Format Approval Notice",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1160, 240]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "notificationType",
+              "value": "REQUEST_DECLINED",
+              "type": "string"
+            },
+            {
+              "id": "2",
+              "name": "recipient",
+              "value": "={{ $json.payload.borrowerEmail }}",
+              "type": "string"
+            },
+            {
+              "id": "3",
+              "name": "message",
+              "value": "={{ $json.payload.lenderName }} declined your borrow request for {{ $json.payload.toolName }}.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "10000000-0000-0000-0000-000000000008",
+      "name": "Format Decline Notice",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1160, 380]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "notificationType",
+              "value": "LOAN_COMPLETED",
+              "type": "string"
+            },
+            {
+              "id": "2",
+              "name": "recipient",
+              "value": "={{ $json.payload.borrowerEmail }}",
+              "type": "string"
+            },
+            {
+              "id": "3",
+              "name": "message",
+              "value": "=Thank you! {{ $json.payload.toolName }} was marked as returned. Thanks for being a great neighbor!",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "10000000-0000-0000-0000-000000000009",
+      "name": "Format Return Notice",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1160, 520]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"success\": true,\n  \"notified\": true,\n  \"recipient\": \"{{ $json.recipient }}\",\n  \"event\": \"{{ $json.notificationType }}\"\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "10000000-0000-0000-0000-000000000010",
+      "name": "Respond 200 OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1440, 300]
+    }
+  ],
+  "connections": {
+    "Convex Webhook": {
+      "main": [
+        [
+          {
+            "node": "Verify HMAC Signature",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify HMAC Signature": {
+      "main": [
+        [
+          {
+            "node": "Is Signature Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Signature Valid?": {
+      "main": [
+        [
+          {
+            "node": "Route by Event",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reject 403",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Event": {
+      "main": [
+        [
+          {
+            "node": "Format Owner Notification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Approval Notice",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Decline Notice",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Return Notice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Owner Notification": {
+      "main": [
+        [
+          {
+            "node": "Respond 200 OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Approval Notice": {
+      "main": [
+        [
+          {
+            "node": "Respond 200 OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Decline Notice": {
+      "main": [
+        [
+          {
+            "node": "Respond 200 OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Return Notice": {
+      "main": [
+        [
+          {
+            "node": "Respond 200 OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

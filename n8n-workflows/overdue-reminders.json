@@ -1,0 +1,191 @@
+{
+  "name": "LendLoop — Overdue Reminders",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * *"
+            }
+          ]
+        }
+      },
+      "id": "20000000-0000-0000-0000-000000000001",
+      "name": "Daily at 9:00 AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.CONVEX_SITE_URL || 'http://127.0.0.1:3211' }}/api/overdue-loans",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.CONVEX_N8N_API_SECRET || 'lendloop_convex_api_bearer_token_2026' }}"
+            }
+          ]
+        },
+        "options": {
+          "retryOnFail": true,
+          "maxTries": 3,
+          "waitBetweenTries": 3000
+        }
+      },
+      "id": "20000000-0000-0000-0000-000000000002",
+      "name": "Fetch Overdue Loans from Convex",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const loans = $input.item.json.overdueLoans || [];\n\nif (!loans.length) {\n  return [];\n}\n\nconst today = new Date().toISOString().split('T')[0];\n\nreturn loans.map(loan => {\n  const message = `Friendly reminder: ${loan.toolName} was scheduled for return on ${loan.endDate} (${loan.daysPastDue} day(s) overdue). Please coordinate return with ${loan.lenderName}.`;\n  const idempotencyKey = `reminder-${loan.requestId}-${today}`;\n\n  return {\n    json: {\n      ...loan,\n      today,\n      reminderMessage: message,\n      idempotencyKey\n    }\n  };\n});"
+      },
+      "id": "20000000-0000-0000-0000-000000000003",
+      "name": "Format Reminders & Generate Idempotency Key",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "deliveryChannel",
+              "value": "SIMULATED_MOCK_DISPATCH",
+              "type": "string"
+            },
+            {
+              "id": "2",
+              "name": "recipientEmail",
+              "value": "={{ $json.borrowerEmail }}",
+              "type": "string"
+            },
+            {
+              "id": "3",
+              "name": "sentMessage",
+              "value": "={{ $json.reminderMessage }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "20000000-0000-0000-0000-000000000004",
+      "name": "Dispatch Reminder Notification",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [920, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\n\nconst secret = $env.N8N_WEBHOOK_SECRET || 'lendloop_shared_hmac_secret_key_2026';\n\nconst payload = {\n  borrowRequestId: $input.item.json.requestId,\n  type: 'reminder',\n  message: $input.item.json.reminderMessage,\n  idempotencyKey: $input.item.json.idempotencyKey\n};\n\nconst payloadString = JSON.stringify(payload);\nconst signature = crypto\n  .createHmac('sha256', secret)\n  .update(payloadString)\n  .digest('hex');\n\nreturn [{\n  json: {\n    payload,\n    signature\n  }\n}];"
+      },
+      "id": "20000000-0000-0000-0000-000000000005",
+      "name": "Sign Writeback Payload with HMAC",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1140, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.CONVEX_SITE_URL || 'http://127.0.0.1:3211' }}/api/automation-log",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-N8N-Signature",
+              "value": "={{ $json.signature }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.payload) }}",
+        "options": {
+          "retryOnFail": true,
+          "maxTries": 3,
+          "waitBetweenTries": 2000
+        }
+      },
+      "id": "20000000-0000-0000-0000-000000000006",
+      "name": "Idempotent Write-Back to Convex",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1360, 300]
+    }
+  ],
+  "connections": {
+    "Daily at 9:00 AM": {
+      "main": [
+        [
+          {
+            "node": "Fetch Overdue Loans from Convex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Overdue Loans from Convex": {
+      "main": [
+        [
+          {
+            "node": "Format Reminders & Generate Idempotency Key",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Reminders & Generate Idempotency Key": {
+      "main": [
+        [
+          {
+            "node": "Dispatch Reminder Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dispatch Reminder Notification": {
+      "main": [
+        [
+          {
+            "node": "Sign Writeback Payload with HMAC",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sign Writeback Payload with HMAC": {
+      "main": [
+        [
+          {
+            "node": "Idempotent Write-Back to Convex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

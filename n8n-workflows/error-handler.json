@@ -1,0 +1,110 @@
+{
+  "name": "LendLoop — Error Handler",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "30000000-0000-0000-0000-000000000001",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "incidentType",
+              "value": "AUTOMATION_EXECUTION_FAILURE",
+              "type": "string"
+            },
+            {
+              "id": "2",
+              "name": "failedWorkflowName",
+              "value": "={{ $json.workflow.name }}",
+              "type": "string"
+            },
+            {
+              "id": "3",
+              "name": "failedExecutionId",
+              "value": "={{ $json.execution.id }}",
+              "type": "string"
+            },
+            {
+              "id": "4",
+              "name": "errorMessage",
+              "value": "={{ $json.execution.error.message }}",
+              "type": "string"
+            },
+            {
+              "id": "5",
+              "name": "timestamp",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "30000000-0000-0000-0000-000000000002",
+      "name": "Extract Incident Details",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "status",
+              "value": "ALERT_DISPATCHED",
+              "type": "string"
+            },
+            {
+              "id": "2",
+              "name": "alertPayload",
+              "value": "=[CRITICAL] Workflow '{{ $json.failedWorkflowName }}' failed (Execution: {{ $json.failedExecutionId }}). Error: {{ $json.errorMessage }} at {{ $json.timestamp }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "30000000-0000-0000-0000-000000000003",
+      "name": "Dispatch Alert Log",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [720, 300]
+    }
+  ],
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Extract Incident Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Incident Details": {
+      "main": [
+        [
+          {
+            "node": "Dispatch Alert Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
