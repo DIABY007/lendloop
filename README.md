@@ -2,6 +2,11 @@
 
 > *"Borrow what you need. Lend what you don't."*
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://lendloop-two.vercel.app)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/DIABY007/lendloop)
+
+🔗 **Déploiement en ligne :** [https://lendloop-two.vercel.app](https://lendloop-two.vercel.app)
+
 LendLoop is a neighborhood equipment-sharing platform engineered with **Next.js 16 (App Router)**, **Convex** reactive backend, **Clerk** authentication, and **n8n** automation workflows. 
 
 Designed under the **"Atelier Brutalism & Précision Suisse"** design system, LendLoop brings tactile elegance, strict data minimization, and automated operational intelligence to the local sharing economy.
