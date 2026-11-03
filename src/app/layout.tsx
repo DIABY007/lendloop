@@ -16,13 +16,35 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "LendLoop — Neighborhood Tool Lending Board",
-  description: "Borrow what you need. Lend what you don't. Community-first tool sharing with automated workflows.",
+  description:
+    "Borrow what you need. Lend what you don't. Community-first tool sharing with automated workflows.",
+  applicationName: "LendLoop",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "LendLoop",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  icons: {
+    icon: [
+      { url: "/Logo.png", sizes: "500x500", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
   themeColor: "#151311",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
 };
 
 export default function RootLayout({
