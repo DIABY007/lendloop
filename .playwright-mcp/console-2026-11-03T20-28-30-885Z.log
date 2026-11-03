@@ -1,0 +1,16 @@
+[    1770ms] [WARNING] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview @ https://correct-serval-4358.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js:39
+[ 2223188ms] [LOG] WebSocket closed with code 1006 @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2226381ms] [LOG] Attempting reconnect in 1232ms @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2281296ms] [ERROR] WebSocket connection to 'wss://pet-minimize-margaret-way.trycloudflare.com/api/1.49.0/sync' failed: WebSocket opening handshake timed out @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:1
+[ 2289667ms] [LOG] WebSocket closed with code 1006 @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2291089ms] [LOG] Attempting reconnect in 2266ms @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2304771ms] [ERROR] WebSocket connection to 'wss://pet-minimize-margaret-way.trycloudflare.com/api/1.49.0/sync' failed: Error during WebSocket handshake: Unexpected response code: 530 @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:1
+[ 2304791ms] [LOG] WebSocket closed with code 1006 @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2304809ms] [LOG] Attempting reconnect in 5037ms @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2310255ms] [LOG] WebSocket reconnected at t=2310.2s after disconnect due to closed with code 1006 @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2333684ms] [LOG] WebSocket closed with code 1006 @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2334784ms] [LOG] Attempting reconnect in 842ms @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2516841ms] [ERROR] WebSocket connection to 'wss://pet-minimize-margaret-way.trycloudflare.com/api/1.49.0/sync' failed: Error during WebSocket handshake: Unexpected response code: 530 @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:1
+[ 2516860ms] [LOG] WebSocket closed with code 1006 @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2516870ms] [LOG] Attempting reconnect in 1665ms @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0
+[ 2518778ms] [LOG] WebSocket reconnected at t=2518.8s after disconnect due to closed with code 1006 @ https://lendloop-two.vercel.app/_next/static/immutable/chunks/3r-346tugtd71.js:0

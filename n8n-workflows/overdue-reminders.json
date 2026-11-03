@@ -87,7 +87,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const crypto = require('crypto');\n\nconst secret = $env.N8N_WEBHOOK_SECRET || 'lendloop_shared_hmac_secret_key_2026';\n\nconst payload = {\n  borrowRequestId: $input.item.json.requestId,\n  type: 'reminder',\n  message: $input.item.json.reminderMessage,\n  idempotencyKey: $input.item.json.idempotencyKey\n};\n\nconst payloadString = JSON.stringify(payload);\nconst signature = crypto\n  .createHmac('sha256', secret)\n  .update(payloadString)\n  .digest('hex');\n\nreturn [{\n  json: {\n    payload,\n    signature\n  }\n}];"
+        "jsCode": "const crypto = require('crypto');\n\nconst secret = 'lendloop_shared_hmac_secret_key_2026';\n\nconst payload = {\n  borrowRequestId: $input.item.json.requestId,\n  type: 'reminder',\n  message: $input.item.json.reminderMessage,\n  idempotencyKey: $input.item.json.idempotencyKey\n};\n\nconst payloadString = JSON.stringify(payload);\nconst signature = crypto\n  .createHmac('sha256', secret)\n  .update(payloadString)\n  .digest('hex');\n\nreturn [{\n  json: {\n    payload,\n    signature\n  }\n}];"
       },
       "id": "20000000-0000-0000-0000-000000000005",
       "name": "Sign Writeback Payload with HMAC",

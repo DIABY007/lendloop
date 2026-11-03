@@ -1,0 +1,35 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e105]:
+    - generic [ref=f3e106]:
+      - generic [ref=f3e108]:
+        - heading "Sign in to LendLoop" [level=1] [ref=f3e109]
+        - paragraph [ref=f3e110]: Welcome back! Please sign in to continue
+      - generic [ref=f3e111]:
+        - button "Continue with Google" [ref=f3e114] [cursor=pointer]
+        - paragraph [ref=f3e121]: or
+        - generic [ref=f3e123]:
+          - generic [ref=f3e124]:
+            - generic [ref=f3e127]:
+              - generic [ref=f3e128]: Email address
+              - textbox "Email address" [ref=f3e130]:
+                - /placeholder: Enter your email address
+            - generic:
+              - generic: Password
+              - generic:
+                - textbox:
+                  - /placeholder: Enter your password
+                - button
+          - button "Continue" [ref=f3e133] [cursor=pointer]
+    - generic [ref=f3e137]:
+      - generic [ref=f3e138]:
+        - generic [ref=f3e139]: Don’t have an account?
+        - link "Sign up" [ref=f3e140] [cursor=pointer]:
+          - /url: http://157.173.119.156:3010/sign-up#/?sign_up_force_redirect_url=http%3A%2F%2F157.173.119.156%3A3010%2Fdashboard&sign_in_force_redirect_url=http%3A%2F%2F157.173.119.156%3A3010%2Fdashboard&redirect_url=http%3A%2F%2F157.173.119.156%3A3010%2F
+      - generic [ref=f3e142]:
+        - generic [ref=f3e144]:
+          - paragraph [ref=f3e145]: Secured by
+          - link "Clerk logo" [ref=f3e146] [cursor=pointer]:
+            - /url: https://go.clerk.com/components
+        - paragraph [ref=f3e152]: Development mode
+  - region "Notifications alt+T"
+  - alert [ref=f3e101]: Borrow what you need. Lend what you don't.

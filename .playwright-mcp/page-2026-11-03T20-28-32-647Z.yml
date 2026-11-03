@@ -1,0 +1,59 @@
+- generic [active] [ref=f9e1]:
+  - generic [ref=f9e2]:
+    - banner [ref=f9e3]:
+      - generic [ref=f9e4]:
+        - generic [ref=f9e5]:
+          - link "LendLoop Neighborhood Tool Board" [ref=f9e6] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f9e10]:
+              - generic [ref=f9e11]: LendLoop
+              - generic [ref=f9e13]: Neighborhood Tool Board
+          - generic [ref=f9e14]: Borrow what you need. Lend what you don't.
+        - navigation [ref=f9e18]:
+          - link [ref=f9e19] [cursor=pointer]:
+            - /url: /
+            - button "Catalog" [ref=f9e20]
+    - main [ref=f9e23]:
+      - generic [ref=f9e26]:
+        - generic [ref=f9e27]: Zero-waste local equipment exchange
+        - heading "Borrow what you need. Lend what you don't." [level=1] [ref=f9e32]
+        - paragraph [ref=f9e33]: LendLoop is your neighborhood equipment board. Access high-grade tools, camping gear, and kitchenware without buying them, with automated reminders powered by n8n.
+        - generic [ref=f9e34]:
+          - button "Sign in to lend or borrow" [ref=f9e35]
+          - link [ref=f9e37] [cursor=pointer]:
+            - /url: "#catalog"
+            - button "Browse Public Catalog" [ref=f9e38]
+        - generic [ref=f9e40]:
+          - generic [ref=f9e45]:
+            - heading "Data Minimization" [level=4] [ref=f9e46]
+            - paragraph [ref=f9e47]: No personal or contact info exposed in public listings.
+          - generic [ref=f9e51]:
+            - heading "n8n Automation" [level=4] [ref=f9e52]
+            - paragraph [ref=f9e53]: Cryptographic HMAC webhooks & automated return reminders.
+          - generic [ref=f9e58]:
+            - heading "Trusted Lenders" [level=4] [ref=f9e59]
+            - paragraph [ref=f9e60]: Peer-vetted equipment badges and verified neighbor accounts.
+      - generic [ref=f9e62]:
+        - generic [ref=f9e63]:
+          - generic [ref=f9e64]:
+            - generic [ref=f9e65]: Equipment Registry
+            - heading "Available Tools in the Neighborhood" [level=2] [ref=f9e69]
+            - paragraph [ref=f9e70]: Showing live equipment available to borrow. Sign in with Clerk to request a booking or list your own tools.
+          - generic [ref=f9e71]: "Public Mode: Owner identity shielded"
+        - generic [ref=f9e76]:
+          - button "All Tools" [ref=f9e77]
+          - button "Power Tools" [ref=f9e78]
+          - button "Garden & Yard" [ref=f9e79]
+          - button "Kitchen & Cooking" [ref=f9e80]
+          - button "Outdoor & Camping" [ref=f9e81]
+          - button "Hand Tools" [ref=f9e82]
+          - button "General Equipment" [ref=f9e83]
+    - contentinfo [ref=f9e127]:
+      - generic [ref=f9e128]:
+        - generic [ref=f9e129]:
+          - generic [ref=f9e130]: LendLoop
+          - generic [ref=f9e131]: —
+          - generic [ref=f9e132]: Neighborhood Tool Lending & Automated Workflows
+        - generic [ref=f9e133]: Convex · Clerk · n8n Engine · Next.js 16
+  - region "Notifications alt+T"
+  - alert [ref=f9e134]

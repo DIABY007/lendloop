@@ -217,7 +217,7 @@ export default function DashboardPage() {
                 Neighborhood Tool Board
               </h1>
               {currentUser?.role === "admin" && (
-                <Badge className="bg-primary/20 border-primary/40 text-primary font-mono text-[10px]">
+                <Badge className="bg-primary/20 border-primary/40 text-primary font-mono text-xs">
                   Admin Mode
                 </Badge>
               )}
@@ -247,7 +247,7 @@ export default function DashboardPage() {
               <Compass className="size-3.5" />
               <span>All Tools</span>
               {allTools && (
-                <Badge variant="secondary" className="ml-1 text-[10px] h-4.5 px-1.5">
+                <Badge variant="secondary" className="ml-1 text-xs h-4.5 px-1.5 font-mono">
                   {allTools.length}
                 </Badge>
               )}
@@ -260,7 +260,7 @@ export default function DashboardPage() {
               <Package className="size-3.5" />
               <span>My Listings</span>
               {myTools && (
-                <Badge variant="secondary" className="ml-1 text-[10px] h-4.5 px-1.5">
+                <Badge variant="secondary" className="ml-1 text-xs h-4.5 px-1.5 font-mono">
                   {myTools.length}
                 </Badge>
               )}
@@ -273,7 +273,7 @@ export default function DashboardPage() {
               <ArrowUpRight className="size-3.5" />
               <span>My Requests</span>
               {myRequests && (
-                <Badge variant="secondary" className="ml-1 text-[10px] h-4.5 px-1.5">
+                <Badge variant="secondary" className="ml-1 text-xs h-4.5 px-1.5 font-mono">
                   {myRequests.length}
                 </Badge>
               )}
@@ -286,7 +286,7 @@ export default function DashboardPage() {
               <ArrowDownLeft className="size-3.5" />
               <span>Incoming Requests</span>
               {pendingIncomingCount > 0 && (
-                <Badge className="ml-1 bg-amber-500 text-black text-[10px] h-4.5 px-1.5 font-bold animate-pulse">
+                <Badge className="ml-1 bg-amber-500 text-black text-xs h-4.5 px-1.5 font-bold font-mono">
                   {pendingIncomingCount}
                 </Badge>
               )}
@@ -559,18 +559,18 @@ export default function DashboardPage() {
                           <div className="flex items-center gap-2">
                             <span className="font-semibold text-foreground">{u.name}</span>
                             {u.role === "admin" && (
-                              <Badge className="bg-primary/20 text-primary border-primary/40 text-[10px]">
+                              <Badge className="bg-primary/20 text-primary border-primary/40 text-xs font-mono">
                                 Admin
                               </Badge>
                             )}
                             {u.isTrustedLender && (
-                              <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/40 text-[10px] flex items-center gap-1">
+                              <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/40 text-xs font-mono flex items-center gap-1">
                                 <ShieldCheck className="size-3" />
                                 Trusted
                               </Badge>
                             )}
                           </div>
-                          <span className="text-muted-foreground font-mono text-[11px]">
+                          <span className="text-muted-foreground font-mono text-xs">
                             {u.email}
                           </span>
                         </div>
@@ -612,16 +612,16 @@ export default function DashboardPage() {
                           <div className="space-y-1">
                             <div className="flex items-center gap-2">
                               <span className="font-bold text-foreground">{loan.toolName}</span>
-                              <Badge variant="outline" className="text-[10px]">
+                              <Badge variant="outline" className="text-xs font-mono">
                                 {loan.status}
                               </Badge>
                             </div>
-                            <div className="text-muted-foreground text-[11px] font-mono">
+                            <div className="text-muted-foreground text-xs font-mono">
                               Borrower: {loan.borrowerName} · Lender: {loan.lenderName}
                             </div>
                           </div>
 
-                          <div className="font-mono text-muted-foreground text-[11px]">
+                          <div className="font-mono text-muted-foreground text-xs">
                             {loan.startDate} → {loan.endDate}
                           </div>
                         </div>

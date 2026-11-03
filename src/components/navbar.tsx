@@ -30,9 +30,9 @@ export function Navbar() {
             <div className="flex flex-col">
               <span className="text-base font-bold tracking-tight text-foreground flex items-center gap-1.5">
                 LendLoop
-                <span className="inline-block size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="inline-block size-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
               </span>
-              <span className="hidden sm:inline-block text-[11px] font-medium text-muted-foreground">
+              <span className="hidden sm:inline-block text-xs font-medium text-muted-foreground">
                 Neighborhood Tool Board
               </span>
             </div>
@@ -81,7 +81,7 @@ export function Navbar() {
               {currentUser?.role === "admin" && (
                 <Badge
                   variant="outline"
-                  className="hidden sm:flex border-primary/40 bg-primary/10 text-primary font-mono text-[10px] tracking-wide uppercase px-2 py-0.5"
+                  className="hidden sm:flex border-primary/40 bg-primary/10 text-primary font-mono text-xs tracking-wide uppercase px-2 py-0.5"
                 >
                   Admin
                 </Badge>
@@ -89,7 +89,7 @@ export function Navbar() {
               {currentUser?.isTrustedLender && (
                 <Badge
                   variant="outline"
-                  className="hidden sm:flex border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-mono text-[10px] items-center gap-1 px-2 py-0.5"
+                  className="hidden sm:flex border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-mono text-xs items-center gap-1 px-2 py-0.5"
                 >
                   <ShieldCheck className="size-3" />
                   Trusted Lender

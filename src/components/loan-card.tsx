@@ -68,9 +68,9 @@ export function LoanCard({
         return (
           <Badge
             variant="outline"
-            className="border-amber-500/40 bg-amber-500/10 text-amber-400 font-mono text-[11px] gap-1.5"
+            className="border-amber-500/40 bg-amber-500/10 text-amber-400 font-mono text-xs gap-1.5"
           >
-            <Clock className="size-3 animate-spin" />
+            <Clock className="size-3" />
             <span>Pending Review</span>
           </Badge>
         );
@@ -78,9 +78,9 @@ export function LoanCard({
         return (
           <Badge
             variant="outline"
-            className="border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-mono text-[11px] gap-1.5"
+            className="border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-mono text-xs gap-1.5"
           >
-            <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="size-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
             <span>Active Loan</span>
           </Badge>
         );
@@ -88,7 +88,7 @@ export function LoanCard({
         return (
           <Badge
             variant="outline"
-            className="border-red-500/40 bg-red-500/10 text-red-400 font-mono text-[11px] gap-1.5 animate-pulse"
+            className="border-red-500/40 bg-red-500/10 text-red-400 font-mono text-xs gap-1.5"
           >
             <AlertTriangle className="size-3" />
             <span>Overdue Return</span>
@@ -98,7 +98,7 @@ export function LoanCard({
         return (
           <Badge
             variant="outline"
-            className="border-destructive/40 bg-destructive/10 text-destructive font-mono text-[11px] gap-1.5"
+            className="border-destructive/40 bg-destructive/10 text-destructive font-mono text-xs gap-1.5"
           >
             <XCircle className="size-3" />
             <span>Declined</span>
@@ -108,7 +108,7 @@ export function LoanCard({
         return (
           <Badge
             variant="outline"
-            className="border-muted-foreground/30 bg-muted/30 text-muted-foreground font-mono text-[11px] gap-1.5"
+            className="border-muted-foreground/30 bg-muted/30 text-muted-foreground font-mono text-xs gap-1.5"
           >
             <CheckCircle2 className="size-3 text-emerald-500/80" />
             <span>Returned</span>
@@ -121,7 +121,7 @@ export function LoanCard({
     <Card className="overflow-hidden border border-border/80 bg-card rounded-xl transition-all duration-200 hover:border-primary/30">
       <CardHeader className="p-5 pb-3">
         <div className="flex items-center justify-between gap-2 mb-1.5">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+          <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
             {toolCategory.replace("_", " ")}
           </span>
           {getStatusBadge()}
@@ -153,7 +153,7 @@ export function LoanCard({
           <div className="text-right">
             <span className="font-medium text-foreground">{counterpartName}</span>
             {counterpartEmail && (
-              <span className="block text-[10px] text-muted-foreground/80 font-mono">
+              <span className="block text-xs text-muted-foreground font-mono">
                 {counterpartEmail}
               </span>
             )}
@@ -162,20 +162,20 @@ export function LoanCard({
 
         {/* Automation logs trail (Bonus) */}
         {automationLogs && automationLogs.length > 0 && (
-          <div className="rounded-lg border border-border/40 bg-muted/30 p-2.5 text-[11px] space-y-1.5">
-            <div className="flex items-center gap-1.5 font-mono text-[10px] text-primary font-semibold uppercase tracking-wider">
+          <div className="rounded-lg border border-border/40 bg-muted/30 p-2.5 text-xs space-y-1.5">
+            <div className="flex items-center gap-1.5 font-mono text-xs text-primary font-semibold uppercase tracking-wider">
               <BellRing className="size-3" />
               <span>Automation Activity (n8n)</span>
             </div>
             {automationLogs.map((log) => (
               <div
                 key={log._id}
-                className="flex items-center justify-between text-muted-foreground text-[11px] font-mono"
+                className="flex items-center justify-between text-muted-foreground text-xs font-mono"
               >
                 <span className="truncate max-w-[200px] text-foreground/80">
                   {log.message}
                 </span>
-                <span className="text-[10px] text-muted-foreground/70 shrink-0">
+                <span className="text-xs text-muted-foreground shrink-0">
                   {formatDistanceToNow(log.sentAt, { addSuffix: true })}
                 </span>
               </div>

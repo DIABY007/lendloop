@@ -55,18 +55,18 @@ export function ToolCard({
         <CardHeader className="p-5 pb-3">
           {/* Header Row: Category Tag & Status LED */}
           <div className="flex items-center justify-between gap-2 mb-2">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground/90 font-medium">
+            <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground font-medium">
               {getCategoryLabel(category)}
             </span>
 
             {/* Status Indicator */}
             {isAvailable ? (
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-400">
-                <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-400">
+                <span className="size-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
                 <span>Available</span>
               </div>
             ) : (
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[11px] font-medium text-amber-400">
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-400">
                 <span className="size-1.5 rounded-full bg-amber-500" />
                 <span>On Loan</span>
               </div>
@@ -91,7 +91,7 @@ export function ToolCard({
           <div className="flex items-center justify-between rounded-lg border border-border/50 bg-muted/30 px-3 py-2 text-xs">
             <span className="text-muted-foreground font-medium">Condition</span>
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-foreground text-[11px]">
+              <span className="font-semibold text-foreground text-xs">
                 {conditionData.label}
               </span>
               {/* Visual 3-bar gauge */}
@@ -114,7 +114,7 @@ export function ToolCard({
           <div className="mt-3.5 flex items-center justify-between text-xs">
             {isPublicView ? (
               <div
-                className="flex items-center gap-1.5 text-muted-foreground/75 font-mono text-[11px]"
+                className="flex items-center gap-1.5 text-muted-foreground font-mono text-xs"
                 title="Identity shielded for privacy in public catalog"
               >
                 <Lock className="size-3 text-primary/70" />
@@ -122,7 +122,7 @@ export function ToolCard({
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <div className="flex size-6 items-center justify-center rounded-full bg-muted border border-border/60 text-[10px] font-semibold text-foreground">
+                <div className="flex size-6 items-center justify-center rounded-full bg-muted border border-border/60 text-xs font-semibold text-foreground">
                   {ownerName?.charAt(0).toUpperCase() || "N"}
                 </div>
                 <div className="flex items-center gap-1">
@@ -139,7 +139,7 @@ export function ToolCard({
             )}
 
             {isCurrentUserOwner && (
-              <Badge variant="outline" className="text-[10px] border-primary/30 text-primary">
+              <Badge variant="outline" className="text-xs border-primary/30 text-primary">
                 Your Listing
               </Badge>
             )}
@@ -151,7 +151,7 @@ export function ToolCard({
       <CardFooter className="p-5 pt-3 border-t border-border/40 mt-3 flex items-center justify-between gap-2">
         {isPublicView ? (
           <div className="w-full text-center py-1">
-            <span className="text-[11px] text-muted-foreground/70 font-mono">
+            <span className="text-xs text-muted-foreground font-mono">
               Sign in to request
             </span>
           </div>

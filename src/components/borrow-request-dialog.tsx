@@ -126,11 +126,11 @@ export function BorrowRequestDialog({
           </div>
 
           <div className="rounded-lg border border-border/50 bg-muted/30 p-3 text-xs text-muted-foreground space-y-1">
-            <p className="font-semibold text-foreground text-[11px] flex items-center gap-1.5">
+            <p className="font-semibold text-foreground text-xs flex items-center gap-1.5">
               <span className="size-1.5 rounded-full bg-primary" />
               Automated Community Courtesy
             </p>
-            <p className="text-[11px] leading-relaxed">
+            <p className="text-xs leading-relaxed">
               Our automated system (via n8n) will alert the owner right away and send you a timely return reminder the day before.
             </p>
           </div>

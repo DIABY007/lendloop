@@ -28,7 +28,18 @@ export function Providers({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorBackground: "hsl(28, 7%, 11%)",
+          colorText: "hsl(35, 15%, 93%)",
+          colorPrimary: "hsl(34, 96%, 53%)",
+          colorInputBackground: "hsl(28, 5%, 15%)",
+          colorInputText: "hsl(35, 15%, 93%)",
+          colorTextSecondary: "hsl(28, 10%, 75%)",
+        },
+      }}
+    >
       <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
         {children}
       </ConvexProviderWithClerk>

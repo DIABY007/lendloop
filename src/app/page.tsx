@@ -101,34 +101,37 @@ export default function HomePage() {
               </div>
 
               {/* Trust & Privacy Pillars */}
-              <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3 border-t border-border/60 pt-8 text-left">
-                <div className="flex items-start gap-2.5 rounded-lg border border-border/40 bg-card/40 p-3.5">
-                  <Lock className="size-4 text-primary shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="text-xs font-semibold text-foreground">Data Minimization</h4>
-                    <p className="text-[11px] text-muted-foreground mt-0.5">
-                      No personal or contact info exposed in public listings.
-                    </p>
+              <div className="mt-12 border-t border-border/60 pt-8 text-left">
+                <h2 className="sr-only">Core Platform Guarantees</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="flex items-start gap-2.5 rounded-lg border border-border/40 bg-card/40 p-3.5">
+                    <Lock className="size-4 text-primary shrink-0 mt-0.5" />
+                    <div>
+                      <h3 className="text-xs font-semibold text-foreground">Data Minimization</h3>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        No personal or contact info exposed in public listings.
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-start gap-2.5 rounded-lg border border-border/40 bg-card/40 p-3.5">
-                  <Zap className="size-4 text-primary shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="text-xs font-semibold text-foreground">n8n Automation</h4>
-                    <p className="text-[11px] text-muted-foreground mt-0.5">
-                      Cryptographic HMAC webhooks & automated return reminders.
-                    </p>
+                  <div className="flex items-start gap-2.5 rounded-lg border border-border/40 bg-card/40 p-3.5">
+                    <Zap className="size-4 text-primary shrink-0 mt-0.5" />
+                    <div>
+                      <h3 className="text-xs font-semibold text-foreground">n8n Automation</h3>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        Cryptographic HMAC webhooks & automated return reminders.
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-start gap-2.5 rounded-lg border border-border/40 bg-card/40 p-3.5">
-                  <ShieldCheck className="size-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="text-xs font-semibold text-foreground">Trusted Lenders</h4>
-                    <p className="text-[11px] text-muted-foreground mt-0.5">
-                      Peer-vetted equipment badges and verified neighbor accounts.
-                    </p>
+                  <div className="flex items-start gap-2.5 rounded-lg border border-border/40 bg-card/40 p-3.5">
+                    <ShieldCheck className="size-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <div>
+                      <h3 className="text-xs font-semibold text-foreground">Trusted Lenders</h3>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        Peer-vetted equipment badges and verified neighbor accounts.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -172,7 +175,7 @@ export default function HomePage() {
               >
                 All Tools
                 {availableTools && (
-                  <span className="ml-1.5 text-[10px] font-mono opacity-80 tabular-nums">
+                  <span className="ml-1.5 text-xs font-mono opacity-80 tabular-nums">
                     ({availableTools.length})
                   </span>
                 )}
@@ -260,7 +263,7 @@ export default function HomePage() {
             <span>—</span>
             <span>Neighborhood Tool Lending & Automated Workflows</span>
           </div>
-          <div className="font-mono text-[11px] text-muted-foreground/80">
+          <div className="font-mono text-xs text-muted-foreground">
             Convex · Clerk · n8n Engine · Next.js 16
           </div>
         </div>

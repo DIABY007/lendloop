@@ -14,6 +14,14 @@ services:
       - N8N_PROTOCOL=http
       - WEBHOOK_URL=http://localhost:5678/
       - GENERIC_TIMEZONE=UTC
+      - CONVEX_SITE_URL=http://172.17.0.1:3211
+      - CONVEX_N8N_API_SECRET=lendloop_convex_api_bearer_token_2026
+      - N8N_WEBHOOK_SECRET=lendloop_shared_hmac_secret_key_2026
+      - NODE_FUNCTION_ALLOW_BUILTIN=*
+      - NODE_FUNCTION_ALLOW_EXTERNAL=*
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - n8n_data:/home/node/.n8n
 
