@@ -130,7 +130,7 @@ Crafted to meet the quality standards of Linear, Stripe, Raycast, and Apple:
 
 ### Step 1: Clone & Install Dependencies
 ```bash
-git clone https://github.com/your-username/lendloop.git
+git clone https://github.com/DIABY007/lendloop.git
 cd lendloop
 npm install
 ```
@@ -291,4 +291,4 @@ All components and routes have been built and validated:
 
 Developed for the **Fluence International, Inc.** Full-Stack Developer evaluation.
 * **Stack:** Next.js 16 (App Router), Convex, Clerk, n8n, TypeScript.
-* **Author:** Antigravity / Lead Engineering Candidate.
+* **Author:** Souleymane Diaby / Full-Stack Developer Candidate.
