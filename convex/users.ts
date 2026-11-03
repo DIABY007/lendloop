@@ -8,8 +8,12 @@ import { requireAdmin, requireIdentity, requireUser } from "./lib/auth";
  * If they do exist, updates their profile info if changed.
  */
 export const ensureUser = mutation({
-  args: {},
-  handler: async (ctx) => {
+  args: {
+    name: v.optional(v.string()),
+    email: v.optional(v.string()),
+    imageUrl: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
     const identity = await requireIdentity(ctx);
 
     const existingUser = await ctx.db
@@ -17,9 +21,19 @@ export const ensureUser = mutation({
       .withIndex("by_clerkId", (q) => q.eq("clerkId", identity.subject))
       .first();
 
-    const name = identity.name || identity.givenName || identity.nickname || "Neighbor";
-    const email = identity.email || "no-email@lendloop.local";
-    const imageUrl = identity.pictureUrl;
+    const name =
+      identity.name ||
+      identity.givenName ||
+      identity.nickname ||
+      args.name ||
+      "Neighbor";
+    const email =
+      identity.email ||
+      args.email ||
+      "no-email@lendloop.local";
+    const imageUrl =
+      identity.pictureUrl ||
+      args.imageUrl;
 
     if (!existingUser) {
       const userId = await ctx.db.insert("users", {
@@ -48,6 +62,34 @@ export const ensureUser = mutation({
     }
 
     return existingUser;
+  },
+});
+
+export const backfillUsers = internalMutation({
+  args: {
+    users: v.array(
+      v.object({
+        clerkId: v.string(),
+        name: v.string(),
+        email: v.string(),
+        imageUrl: v.optional(v.string()),
+      })
+    ),
+  },
+  handler: async (ctx, args) => {
+    for (const u of args.users) {
+      const user = await ctx.db
+        .query("users")
+        .withIndex("by_clerkId", (q) => q.eq("clerkId", u.clerkId))
+        .first();
+      if (user) {
+        await ctx.db.patch(user._id, {
+          name: u.name,
+          email: u.email,
+          imageUrl: u.imageUrl || user.imageUrl,
+        });
+      }
+    }
   },
 });
 

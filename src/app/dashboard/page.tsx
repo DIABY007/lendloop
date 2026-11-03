@@ -75,10 +75,14 @@ export default function DashboardPage() {
 
   // Guarantee sync on login once Convex auth is ready
   useEffect(() => {
-    if (isConvexAuth) {
-      ensureUser().catch(console.error);
+    if (isConvexAuth && user) {
+      ensureUser({
+        name: user.fullName || user.firstName || undefined,
+        email: user.primaryEmailAddress?.emailAddress || undefined,
+        imageUrl: user.imageUrl || undefined,
+      }).catch(console.error);
     }
-  }, [isConvexAuth, ensureUser]);
+  }, [isConvexAuth, user, ensureUser]);
 
   // Request borrow action
   const handleOpenBorrowModal = (toolId: Id<"tools">, toolName: string) => {
