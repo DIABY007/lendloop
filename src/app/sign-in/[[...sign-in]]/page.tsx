@@ -17,6 +17,7 @@ export default function SignInPage() {
           }
         >
           <SignIn
+            forceRedirectUrl="/dashboard"
             fallbackRedirectUrl="/dashboard"
             appearance={{
               elements: {

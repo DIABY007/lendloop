@@ -77,7 +77,7 @@ export default function HomePage() {
                     </Button>
                   </Link>
                 ) : (
-                  <SignInButton mode="modal" fallbackRedirectUrl="/dashboard">
+                  <SignInButton forceRedirectUrl="/dashboard" fallbackRedirectUrl="/dashboard">
                     <Button
                       size="lg"
                       className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-6 shadow-md active:scale-[0.98] transition-transform"
