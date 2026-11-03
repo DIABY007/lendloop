@@ -15,10 +15,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lendloop-two.vercel.app"),
   title: "LendLoop — Neighborhood Tool Lending Board",
   description:
     "Borrow what you need. Lend what you don't. Community-first tool sharing with automated workflows.",
   applicationName: "LendLoop",
+  openGraph: {
+    title: "LendLoop — Neighborhood Tool Lending Board",
+    description:
+      "Borrow what you need. Lend what you don't. Community-first tool sharing with automated workflows.",
+    url: "https://lendloop-two.vercel.app",
+    siteName: "LendLoop",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "LendLoop — Neighborhood Tool Lending Board",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LendLoop — Neighborhood Tool Lending Board",
+    description:
+      "Borrow what you need. Lend what you don't. Community-first tool sharing with automated workflows.",
+    images: ["/twitter-image.png"],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
