@@ -8,7 +8,13 @@
  * @module
  */
 
+import type * as automationLogs from "../automationLogs.js";
+import type * as borrowRequests from "../borrowRequests.js";
+import type * as http from "../http.js";
 import type * as lib_auth from "../lib/auth.js";
+import type * as notifyN8n from "../notifyN8n.js";
+import type * as tools from "../tools.js";
+import type * as users from "../users.js";
 
 import type {
   ApiFromModules,
@@ -17,7 +23,13 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  automationLogs: typeof automationLogs;
+  borrowRequests: typeof borrowRequests;
+  http: typeof http;
   "lib/auth": typeof lib_auth;
+  notifyN8n: typeof notifyN8n;
+  tools: typeof tools;
+  users: typeof users;
 }>;
 
 /**
