@@ -21,16 +21,26 @@ export const ensureUser = mutation({
       .withIndex("by_clerkId", (q) => q.eq("clerkId", identity.subject))
       .first();
 
+    const email =
+      identity.email ||
+      args.email ||
+      "no-email@lendloop.local";
+
+    const emailDerivedName =
+      email !== "no-email@lendloop.local"
+        ? email
+            .split("@")[0]
+            .replace(/[._-]/g, " ")
+            .replace(/\b\w/g, (char) => char.toUpperCase())
+        : null;
+
     const name =
       identity.name ||
       identity.givenName ||
       identity.nickname ||
       args.name ||
+      emailDerivedName ||
       "Neighbor";
-    const email =
-      identity.email ||
-      args.email ||
-      "no-email@lendloop.local";
     const imageUrl =
       identity.pictureUrl ||
       args.imageUrl;

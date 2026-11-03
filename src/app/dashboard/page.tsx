@@ -76,9 +76,14 @@ export default function DashboardPage() {
   // Guarantee sync on login once Convex auth is ready
   useEffect(() => {
     if (isConvexAuth && user) {
+      const email = user.primaryEmailAddress?.emailAddress;
+      const emailDerivedName = email
+        ? email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+        : undefined;
+
       ensureUser({
-        name: user.fullName || user.firstName || undefined,
-        email: user.primaryEmailAddress?.emailAddress || undefined,
+        name: user.fullName || user.firstName || user.username || emailDerivedName || undefined,
+        email: email || undefined,
         imageUrl: user.imageUrl || undefined,
       }).catch(console.error);
     }
