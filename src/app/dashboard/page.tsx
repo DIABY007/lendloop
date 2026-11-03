@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
-import { useMutation, useQuery } from "convex/react";
+import { useMutation, useQuery, useConvexAuth } from "convex/react";
 import { api } from "@convex/_generated/api";
 import { Id } from "@convex/_generated/dataModel";
 import { Navbar } from "@/components/navbar";
@@ -32,14 +32,15 @@ import {
 
 export default function DashboardPage() {
   const { isSignedIn, isLoaded, user } = useUser();
+  const { isAuthenticated: isConvexAuth } = useConvexAuth();
 
   // Convex mutations & queries
   const ensureUser = useMutation(api.users.ensureUser);
-  const currentUser = useQuery(api.users.getCurrentUser);
-  const allTools = useQuery(api.tools.listAllTools, {});
-  const myTools = useQuery(api.tools.listMyTools);
-  const myRequests = useQuery(api.borrowRequests.listMyRequests);
-  const incomingRequests = useQuery(api.borrowRequests.listIncomingRequests);
+  const currentUser = useQuery(api.users.getCurrentUser, isConvexAuth ? {} : "skip");
+  const allTools = useQuery(api.tools.listAllTools, isConvexAuth ? {} : "skip");
+  const myTools = useQuery(api.tools.listMyTools, isConvexAuth ? {} : "skip");
+  const myRequests = useQuery(api.borrowRequests.listMyRequests, isConvexAuth ? {} : "skip");
+  const incomingRequests = useQuery(api.borrowRequests.listIncomingRequests, isConvexAuth ? {} : "skip");
   const allLoansAdmin = useQuery(
     api.borrowRequests.listAllLoans,
     currentUser?.role === "admin" ? {} : "skip"
@@ -71,12 +72,12 @@ export default function DashboardPage() {
     toolName: "",
   });
 
-  // Guarantee sync on login
+  // Guarantee sync on login once Convex auth is ready
   useEffect(() => {
-    if (isSignedIn) {
+    if (isConvexAuth) {
       ensureUser().catch(console.error);
     }
-  }, [isSignedIn, ensureUser]);
+  }, [isConvexAuth, ensureUser]);
 
   // Request borrow action
   const handleOpenBorrowModal = (toolId: Id<"tools">, toolName: string) => {

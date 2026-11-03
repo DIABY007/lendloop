@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
-import { useQuery } from "convex/react";
+import { useQuery, useConvexAuth } from "convex/react";
 import { api } from "@convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -12,7 +12,8 @@ import { Wrench, ShieldCheck, ArrowRight, LayoutDashboard, Compass } from "lucid
 export function Navbar() {
   const pathname = usePathname();
   const { isSignedIn, isLoaded } = useUser();
-  const currentUser = useQuery(api.users.getCurrentUser);
+  const { isAuthenticated: isConvexAuth } = useConvexAuth();
+  const currentUser = useQuery(api.users.getCurrentUser, isConvexAuth ? {} : "skip");
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/70 bg-background/85 backdrop-blur-md transition-colors">
